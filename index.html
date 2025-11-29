@@ -4,126 +4,177 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RAETRE | İnsan Potansiyeli, Yeniden Tanımlanıyor.</title>
-    <link rel="icon" href="favicon.jpg?v=2" type="image/jpeg">
-    <link rel="apple-touch-icon" href="favicon.jpg?v=2">
+    
+    <link rel="icon" href="favicon.jpg?v=3" type="image/jpeg">
+    <link rel="apple-touch-icon" href="favicon.jpg?v=3">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
     <style>
-        /* SIFIRLAMA */
+        /* --- PREMIUM CSS RESET & TEMEL AYARLAR --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             height: 100vh;
             width: 100vw;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            background-color: #000000;
-            font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
+            background-color: #050505; /* Derin Siyah */
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             color: #ffffff;
             overflow: hidden;
             position: relative;
         }
 
-        /* 1. KATMAN: ARKAPLAN (Bulanık & Tam Ekran) */
-        .background-layer {
+        /* --- 1. KATMAN: SİNEMATİK ARKA PLAN --- */
+        .bg-layer {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('logo.jpg'); /* Senin görselin */
+            background-image: url('logo.jpg'); /* Senin Görselin */
             background-size: cover;
             background-position: center;
-            opacity: 0.3; /* Çok hafif görünür, dikkat dağıtmaz */
-            filter: blur(20px); /* Bulanıklaştırma efekti */
+            opacity: 0.4; /* Görselin parlaklığını kıstık */
+            filter: blur(15px) saturate(1.2); /* Bulanıklık ve renk doygunluğu */
             z-index: 1;
-            transform: scale(1.1); /* Kenar beyazlıklarını önlemek için büyüme */
+            transform: scale(1.1); /* Kenar boşluklarını önlemek için zoom */
         }
 
-        /* 2. KATMAN: İÇERİK (Net Logo ve Yazılar) */
-        .container {
-            position: relative;
-            z-index: 10; /* En üstte */
-            text-align: center;
+        /* --- 2. KATMAN: KARANLIK PERDE (Vignette) --- */
+        .vignette {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            max-width: 600px; /* PC'de çok yayılmasın */
-            padding: 20px;
-            animation: zoomIn 1.2s ease-out;
+            height: 100%;
+            background: radial-gradient(circle, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.9) 90%);
+            z-index: 2;
         }
 
-        /* LOGO GÖRSELİ (Kesilmeden Sığdırma) */
+        /* --- 3. KATMAN: ANA İÇERİK (Cam Efekti) --- */
+        .glass-card {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            max-width: 600px;
+            width: 90%;
+            padding: 50px 30px;
+            
+            /* GLASSMORPHISM (Buzlu Cam) */
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            
+            animation: floatUp 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        /* LOGO */
         .hero-logo {
-            width: 100%; /* Kapsayıcı genişliği kadar */
-            height: auto; /* Orantıyı bozma */
-            max-height: 50vh; /* Ekranın yarısını geçmesin */
-            object-fit: contain; /* ASLA KESME, SIĞDIR */
-            margin-bottom: 20px;
-            filter: drop-shadow(0 0 20px rgba(0,0,0,0.8)); /* Logoyu öne çıkaran gölge */
+            width: 160px; /* Logo boyutu */
+            height: auto;
+            border-radius: 20px; /* Hafif yumuşak köşe */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+            margin-bottom: 30px;
+            transition: transform 0.3s ease;
         }
 
-        /* ALT BAŞLIK */
-        .subtitle {
-            font-size: 1rem;
-            color: rgba(255, 255, 255, 0.9);
-            letter-spacing: 0.2em;
+        .hero-logo:hover {
+            transform: scale(1.05) rotate(1deg); /* Üzerine gelince hafif hareket */
+        }
+
+        /* BAŞLIK (RAETRE) */
+        h1 {
+            font-size: 3rem; /* Mobilde küçülecek */
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            background: linear-gradient(to right, #fff, #a5a5a5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* SLOGAN */
+        p.subtitle {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            letter-spacing: 0.15em;
             text-transform: uppercase;
             margin-bottom: 40px;
-            font-weight: 500;
-            text-shadow: 0 2px 4px rgba(0,0,0,1);
+            line-height: 1.6;
         }
 
-        /* BUTON */
+        /* CTA BUTONU (Parlayan) */
         .cta-button {
             display: inline-block;
             background: #ffffff;
             color: #000000;
-            padding: 16px 32px;
+            padding: 16px 36px;
             font-size: 0.9rem;
             font-weight: 700;
             letter-spacing: 0.05em;
             text-decoration: none;
             border-radius: 50px;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
-            transition: transform 0.2s;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
         .cta-button:hover {
-            transform: scale(1.05);
-            background: #f0f0f0;
+            transform: translateY(-3px);
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.4); /* Beyaz parlama */
         }
 
         /* FOOTER */
         .footer {
-            position: absolute;
-            bottom: 30px;
-            font-size: 0.7rem;
-            color: rgba(255, 255, 255, 0.5);
+            margin-top: 40px;
+            font-size: 0.65rem;
+            color: rgba(255, 255, 255, 0.3);
             letter-spacing: 0.1em;
-            z-index: 10;
+            text-transform: uppercase;
         }
 
-        @keyframes zoomIn {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
+        /* ANİMASYON */
+        @keyframes floatUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* MOBİL UYUM */
+        @media (max-width: 600px) {
+            h1 { font-size: 2.2rem; }
+            .glass-card { padding: 40px 20px; }
+            .hero-logo { width: 120px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="background-layer"></div>
+    <div class="bg-layer"></div>
+    <div class="vignette"></div>
 
-    <div class="container">
-        <img src="logo.jpg" alt="RAETRE" class="hero-logo">
+    <div class="glass-card">
+        
+        <img src="logo.jpg" alt="RAETRE Logo" class="hero-logo">
 
-        <p class="subtitle">İnsan Potansiyeli, Yeniden Tanımlanıyor.</p>
+        <h1>RAETRE</h1>
+        <p class="subtitle">İnsan Potansiyeli,<br>Yeniden Tanımlanıyor.</p>
 
-        <a href="https://tally.so/r/RGGz1d" target="_blank" class="cta-button">
+        <a href="https://tally.so/r/SENIN_LINKIN" target="_blank" class="cta-button">
             ERKEN ERİŞİM İSTE
         </a>
-    </div>
 
-    <div class="footer">
-        © 2026 RAETRE INC. • AYDIN, TR
+        <div class="footer">
+            © 2026 RAETRE INC. • AYDIN, TR
+        </div>
     </div>
 
 </body>
