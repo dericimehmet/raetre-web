@@ -5,12 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RAETRE | İnsan Potansiyeli, Yeniden Tanımlanıyor.</title>
     
-    <link rel="icon" href="favicon.jpg?v=4" type="image/jpeg">
-    <link rel="apple-touch-icon" href="favicon.jpg?v=4">
+    <link rel="icon" href="favicon.jpg?v=6" type="image/jpeg">
+    <link rel="apple-touch-icon" href="favicon.jpg?v=6">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Cinzel:wght@700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         /* --- TEMEL AYARLAR --- */
@@ -23,139 +25,153 @@
             justify-content: center;
             align-items: center;
             background-color: #050505;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Inter', sans-serif;
             color: #ffffff;
             overflow: hidden;
             position: relative;
         }
 
-        /* --- 1. KATMAN: ARKA PLAN --- */
+        /* --- ARKA PLAN --- */
         .bg-layer {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('logo.jpg'); /* Yazısız Ağaç Görseli */
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('logo.jpg'); /* YAZISIZ AĞAÇ RESMİ */
             background-size: cover;
             background-position: center;
-            opacity: 0.35; /* Arka planı biraz daha kıstık, öndeki parlasın */
-            filter: blur(25px) saturate(1.5); /* Daha flu ve daha canlı renkler */
+            opacity: 0.3;
+            filter: blur(30px) saturate(1.5);
             z-index: 1;
             transform: scale(1.1);
         }
 
-        /* --- 2. KATMAN: VIGNETTE (Kenar Karartma) --- */
         .vignette {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.95) 90%);
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.95) 90%);
             z-index: 2;
         }
 
-        /* --- 3. KATMAN: CAM KART (Glassmorphism) --- */
+        /* --- CAM KART --- */
         .glass-card {
             position: relative;
             z-index: 10;
             text-align: center;
-            max-width: 500px;
+            max-width: 550px;
             width: 90%;
-            padding: 60px 30px;
-            
+            padding: 50px 30px;
             background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.05);
             border-radius: 30px;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
-            
+            box-shadow: 0 30px 60px rgba(0,0,0,0.7);
             animation: floatUp 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
 
-        /* --- LOGO AYARLARI (GÜNCELLENDİ) --- */
+        /* LOGO (AĞAÇ) */
         .hero-logo {
-            width: 220px; /* BÜYÜTÜLDÜ: Artık çok daha heybetli */
+            width: 180px;
             height: auto;
-            border-radius: 45px; /* Apple tarzı yumuşak kare (Squircle) */
-            /* Mavi neon parlama efekti ekledik */
-            box-shadow: 0 0 50px rgba(0, 140, 255, 0.25); 
+            border-radius: 40px;
+            box-shadow: 0 0 60px rgba(0, 140, 255, 0.3);
             margin-bottom: 25px;
-            transition: transform 0.5s ease, box-shadow 0.5s ease;
+            transition: transform 0.5s ease;
         }
+        .hero-logo:hover { transform: scale(1.05); }
 
-        .hero-logo:hover {
-            transform: scale(1.03);
-            box-shadow: 0 0 70px rgba(0, 140, 255, 0.4); /* Hoverda daha çok parlar */
-        }
-
-        /* --- BAŞLIK (RAETRE) --- */
+        /* BAŞLIK */
         h1 {
+            font-family: 'Cinzel', serif;
             font-size: 3.5rem;
-            font-weight: 800;
-            letter-spacing: 0.12em; /* Harf aralığı */
-            margin-bottom: 10px;
+            margin-bottom: 5px;
             text-transform: uppercase;
-            /* Gümüş metalik geçiş */
-            background: linear-gradient(to bottom right, #ffffff 30%, #999999 100%);
+            background: linear-gradient(to bottom right, #ffffff 40%, #999999 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             filter: drop-shadow(0 2px 10px rgba(0,0,0,0.5));
         }
 
-        /* --- SLOGAN --- */
         p.subtitle {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             color: rgba(255, 255, 255, 0.6);
-            letter-spacing: 0.2em;
+            letter-spacing: 0.3em;
             text-transform: uppercase;
-            margin-bottom: 45px;
-            font-weight: 400;
+            margin-bottom: 40px;
         }
 
-        /* --- CTA BUTONU --- */
+        /* BUTON */
         .cta-button {
             display: inline-block;
             background: #ffffff;
             color: #000000;
-            padding: 18px 40px;
+            padding: 16px 32px;
             font-size: 0.9rem;
-            font-weight: 700;
+            font-weight: 800;
             letter-spacing: 0.05em;
             text-decoration: none;
-            border-radius: 100px;
+            border-radius: 50px;
             transition: all 0.3s ease;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+            margin-bottom: 40px;
         }
-
         .cta-button:hover {
-            transform: translateY(-2px) scale(1.02);
-            box-shadow: 0 0 40px rgba(255, 255, 255, 0.3);
-            background-color: #f5f5f5;
+            transform: translateY(-3px);
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
         }
 
-        /* --- FOOTER --- */
+        /* --- SOSYAL MEDYA GRUBU --- */
+        .social-row {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        .social-icon {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        .social-icon:hover {
+            color: #fff;
+            transform: translateY(-3px);
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+        }
+
+        /* --- E-POSTA LİNKLERİ --- */
+        .contact-row {
+            font-size: 0.75rem;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .contact-link {
+            color: rgba(255, 255, 255, 0.4);
+            text-decoration: none;
+            transition: color 0.3s;
+            letter-spacing: 0.05em;
+        }
+        .contact-link:hover {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+
         .footer {
-            margin-top: 50px;
             font-size: 0.65rem;
-            color: rgba(255, 255, 255, 0.25);
-            letter-spacing: 0.15em;
+            color: rgba(255, 255, 255, 0.2);
+            letter-spacing: 0.1em;
             text-transform: uppercase;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
         }
 
-        /* --- ANİMASYON --- */
-        @keyframes floatUp {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes floatUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* --- MOBİL İÇİN KÜÇÜLTME --- */
         @media (max-width: 600px) {
             h1 { font-size: 2.5rem; }
-            .hero-logo { width: 160px; border-radius: 35px; } /* Mobilde çok devasa durmasın */
             .glass-card { padding: 40px 20px; width: 95%; }
+            .hero-logo { width: 150px; }
+            .contact-row { flex-direction: column; gap: 5px; }
         }
     </style>
 </head>
@@ -171,9 +187,33 @@
         <h1>RAETRE</h1>
         <p class="subtitle">İnsan Potansiyeli,<br>Yeniden Tanımlanıyor.</p>
 
-        <a href="https://tally.so/r/RGGz1d" target="_blank" class="cta-button">
+        <a href="https://tally.so/r/SENIN_LINKIN" target="_blank" class="cta-button">
             ERKEN ERİŞİM İSTE
         </a>
+
+        <div class="social-row">
+            <a href="https://instagram.com/raetreofficial" target="_blank" class="social-icon" title="Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://tiktok.com/@raetreofficial" target="_blank" class="social-icon" title="TikTok">
+                <i class="fab fa-tiktok"></i>
+            </a>
+            <a href="https://x.com/raetreofficial" target="_blank" class="social-icon" title="X">
+                <i class="fab fa-x-twitter"></i>
+            </a>
+            <a href="https://reddit.com/user/raetreofficial" target="_blank" class="social-icon" title="Reddit">
+                <i class="fab fa-reddit-alien"></i>
+            </a>
+            <a href="www.linkedin.com/in/mehmet-derici-aab139363" target="_blank" class="social-icon" title="LinkedIn">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+        </div>
+
+        <div class="contact-row">
+            <a href="mailto:hello@raetre.com" class="contact-link">hello@raetre.com</a>
+            <span style="color:rgba(255,255,255,0.2)">|</span>
+            <a href="mailto:contact@raetre.com" class="contact-link">contact@raetre.com</a>
+        </div>
 
         <div class="footer">
             © 2026 RAETRE INC. • AYDIN, TR
